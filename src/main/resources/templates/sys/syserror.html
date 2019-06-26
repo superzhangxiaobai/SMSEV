@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+<title>Denied visit page!</title>
+</head>
+<body>
+	<h1>登陆失败</h1>
+	<p>This is a visit denied page.</p>
+	<p>
+		Click <a th:href="@{/hello}">hello页面</a> to hello page
+	</p>
+	<p>
+		Click <a th:href="@{/logout}">退出</a> to logout.
+	</p>
+</body>
+</html>

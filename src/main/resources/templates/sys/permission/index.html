@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+    <head>
+    <meta charset="utf-8"/>
+    <link th:include="base/base::header ('菜单管理')" />
+    <link rel="stylesheet" th:href="@{/css/sys/base/base.css}"/>
+</head>
+<body>
+<div class="container-fluid">
+    <div id="app">
+        <Layout>
+            <Layout>
+                <i-button shape="circle" icon="ios-refresh" @click="getRoles"></i-button>
+                <i-table highlight-row :columns="role_columns" :data="roles" :loading="loading" :stripe="stripe" :height="containerhei"></i-table>
+            </Layout>
+            <Sider :width="500" :style="{background:bg,}">
+                <div>
+                    <i-button shape="circle" icon="ios-refresh" @click="getRoles"></i-button>
+                    <i-button icon="ios-checkmark" @click="saveRoles" size="small" type="primary">保存授权</i-button>
+                </div>
+                <div>
+                    <Tree :data="menus" ref="menu_datas" show-checkbox multiple :check-directly="true" @on-check-change="checkChange"></Tree><!--:check-directly="true"-->
+                </div>
+            </Sider>
+        </Layout>
+    </div>
+</div>
+<script th:src="@{/js/sys/permission/index.js}"></script>
+<script th:src="@{/js/sys/common.js}"></script>
+</body>
+</html>

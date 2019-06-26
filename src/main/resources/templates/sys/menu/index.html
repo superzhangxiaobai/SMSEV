@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="utf-8"/>
+    <link th:include="base/base::header ('菜单管理')" />
+    <link rel="stylesheet" th:href="@{/css/sys/base/base.css}"/>
+</head>
+<body>
+<div class="container-fluid">
+    <div id="app">
+        <div class="layout-content">
+            <i-row>
+                <i-col span="24" :xs="24" :sm="24" :md="24" :lg="24">
+                    <i-button sec:authorize="hasRole('sys:menu:add')" shape="circle" icon="ios-refresh" @click="getMenus"></i-button>
+                </i-col>
+            </i-row>
+            <i-row>
+                <i-col span="24" :xs="24" :sm="24" :md="24" :lg="24">
+                    <Tree :data="menus" :render="renderContent"></Tree>
+                </i-col>
+            </i-row>
+        </div>
+        <Modal title="菜单信息" v-model="is_show" class-name="vertical-center-modal" @on-ok="submit" ok-text="提交"><!--垂直居中样式-->
+            <i-form :model="menu_form" :label-width="80" :rules="menu_rules">
+                <form-item label="菜单名称">
+                    <i-input v-model="menu_form.menuname" placeholder="菜单名称"></i-input>
+                </form-item>
+                <form-item label="菜单编码">
+                    <i-input v-model="menu_form.url" placeholder="菜单编码"></i-input>
+                </form-item>
+                <form-item label="父级菜单">
+                    <i-input v-model="menu_form.p_menuname" placeholder="菜单名称" readonly></i-input>
+                </form-item>
+                <form-item label="菜单图标">
+                    <i-input v-model="menu_form.icon" placeholder="菜单图标" readonly icon="ios-image-outline" @on-click="chooseIcon"></i-input>
+                </form-item>
+                <form-item label="类型">
+                    <i-select v-model="menu_form.type">
+                        <i-option v-for="item in menu_types" :value="item.type" :key="item.type">{{ item.lable }}</i-option>
+                    </i-select>
+                </form-item>
+                <form-item label="启用状态">
+                    <i-switch v-model="menu_form.isEnable">
+                        <span slot="open">是</span>
+                        <span slot="close">否</span>
+                    </i-switch>
+                </form-item>
+            </i-form>
+        </Modal>
+        <Modal title="图标选择" v-model="is_show_icon">
+            <i-button :icon="item" shape="circle" v-for="item in icons" @click="menu_form.icon=item"></i-button>
+        </Modal>
+    </div>
+</div>
+<script th:src="@{/js/sys/menu/index.js}"></script>
+<script th:src="@{/js/sys/common.js}"></script>
+<script th:inline="javascript" type="text/javascript">
+	/*<![CDATA[*/
+	//result = /*[[${result}]]*/ '';//后台返回的数据
+	/*]]>*/
+</script>
+</body>
+</html>

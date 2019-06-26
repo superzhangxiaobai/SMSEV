@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+      xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <link th:include="base/base::header ('系统登录')" />
+	<link rel="stylesheet" th:href="@{/css/sys/index/index.css}"/>
+	<link rel="stylesheet" th:href="@{/css/sys/base/base.css}"/>
+    <!--<link rel="stylesheet" href="//unpkg.com/iview/dist/styles/iview.css">
+    <script src="//unpkg.com/iview@1.0.1/dist/iview.min.js"></script>-->
+</head>
+<body>
+	<!--<div sec:authorize="hasRole('ROLE_ADMIN')">
+		<p>admin角色</p>
+	</div>
+	&lt;!&ndash; 通过标签鉴权，对应不同角色显示不同信息 &ndash;&gt;
+	<div sec:authorize="hasRole('ROLE_USER')">
+		<p>用户角色</p>
+	</div>
+	<p>
+		<a th:href="@{/logout}">退出</a> to logout.
+	</p>
+	<p>
+        <input type="submit" class="btn btn-info" th:href="@{/admin}" value="管理页" />
+		 <a th:href="@{/admin}">管理页面</a> to admin page.
+	</p>-->
+	<div id="index">
+        <Layout>
+            <!--<Header>
+                <i-menu mode="horizontal" width="auto" :theme="theme" >
+                    <div class="logo">
+                        <img th:src="@{/imgs/system/logo2.png}" width="50" height="50">
+                        <span :style="{color:font_color}">你好,<shiro:principal/></span>
+                    </div>
+                    <div class="tools">
+                        <i-menu mode="horizontal" :theme="theme" @on-select="selectTool">
+                            <Menu-item v-for="(item,index) in tools" :name="item.id" >
+                                <Icon :type="item.icon"></Icon>
+                                {{item.toolname}}
+                            </Menu-item>
+                            &lt;!&ndash;<Menu-item>
+                                <i-switch v-model="isDark" size="large" @on-change="changeTheme">
+                                    <span slot="open">深色</span>
+                                    <span slot="close">浅色</span>
+                                </i-switch>
+                            </Menu-item>&ndash;&gt;
+                        </i-menu>
+                    </div>
+                </i-menu>
+            </Header>-->
+            <Layout>
+                <Sider :style="{background:bg,}" collapsible :collapsed-width="78" v-model="isCollapsed">
+                    <i-menu mode="horizontal" width="auto" :theme="theme" >
+                        <div class="logo">
+                            <img th:src="@{/imgs/system/logo2.png}" width="50" height="50">
+                            <span :style="{color:font_color}">你好,<shiro:principal/>aaaa</span>
+                        </div>
+                    </i-menu>
+                    <i-menu :class="menuitemClasses" width="auto" ref="menus" :theme="theme" v-for="(item,index) in menus" :open-names="open_menu" :active-name="active_menu" @on-open-change="openMenu" @on-select="selectMenu">
+                        <Submenu :name="item.id" >
+                            <template slot="title">
+                                <Icon :type="item.icon"></Icon>
+                                <span>{{item.menuname}}</span>
+                            </template>
+                            <Menu-item v-for="(subitem,subindex) in item.sub" :name="subitem.id">
+                                <Icon :type="subitem.icon"></Icon>
+                                <span>{{subitem.menuname}}</span>
+                            </Menu-item>
+                        </Submenu>
+                    </i-menu>
+                </Sider>
+                <Layout>
+                    <!--<Header :style="{padding: 0}" class="layout-header-bar">
+                        <i-button type="info" ghost shape="circle" icon="md-menu" @click="collapsedSider" :style="{margin: '5px 10px'}" size="24"></i-button>
+                        <i-button type="info" ghost shape="circle" icon="md-refresh" @click="refreshCurrentTab" :style="{margin: '5px 10px'}" size="24"></i-button>
+                    </Header>-->
+                    <Content>
+                        <Tabs type="card" :value="active_tab" @on-click="selectTab" @on-tab-remove="removeTab">
+                            <Tab-pane v-for="(item,index) in tabs" v-if="item.show" :label="item.tabname" :name="item.id" :closable="item.closable">
+                                <div class="layout-content-center">
+                                    <iframe :src="item.content_url" :style="{height:containerhei + 'px'}"></iframe>
+                                </div>
+                            </Tab-pane>
+                        </Tabs>
+                    </Content>
+                    <Footer>
+                        <div class="footer">© 2019 中联今通. 版权所有</div>
+                    </Footer>
+                </Layout>
+            </Layout>
+        </Layout>
+	</div>
+<script th:src="@{/js/sys/index.js}"></script>
+<script th:src="@{/js/sys/common.js}"></script>
+    <script th:inline="javascript" type="text/javascript">
+		/*var i=5;
+		function change_bg() {
+			$("#container").css("background-image","url("+ctxPath+"imgs/system/index-bg-"+i+".jpg)");
+			i++;
+			if(i==10){
+				i==5;
+			}
+		}
+		setInterval(function(){ change_bg(); }, 1000*60*10);*/
+
+    </script>
+</body>
+</html>

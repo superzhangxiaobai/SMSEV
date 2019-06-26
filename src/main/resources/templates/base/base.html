@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="UTF-8" xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="header(title)">
+    <meta charset="UTF-8"/>
+    <title th:text="${title}"></title>
+    <link rel="shortcut icon" th:href="@{/favicon.ico}"/>
+    <!--<link rel="stylesheet" th:href="@{/css/base/vue-easyui/vue.css}" />&lt;!&ndash;href="../../static/css/base/vue-easyui/vue.css"&ndash;&gt;
+    <link rel="stylesheet" th:href="@{/css/base/vue-easyui/color.css}" />
+    <link rel="stylesheet" th:href="@{/css/base/vue-easyui/icon.css}" />-->
+    <!--<script th:src="@{/js/base/vue-easyui/vx-easyui-min.js}"></script>-->
+    <script th:src="@{/js/base/jquery/jquery1.12.min.js}"></script>
+
+    <link rel="stylesheet" th:href="@{/css/base/bootstrap/bootstrap.min.css}" />
+    <link rel="stylesheet" th:href="@{/css/base/bootstrap/bootstrap-select.min.css}" />
+    <script th:src="@{/js/base/bootstrap/bootstrap.min.js}"></script>
+    <!--<script th:src="@{/js/base/bootstrap/bootstrap-select.min.js}"></script>-->
+
+    <!--<script th:src="@{/js/base/vue/vue.min.js}"></script>--><!--2.2版本不支持select渲染-->
+    <script th:src="@{/js/base/vue/vue.min.2.6.js}"></script>
+    <script th:src="@{/js/base/vue/axios.min.js}"></script><!--替代ajax请求,但无法跨域-->
+    <script th:src="@{/js/base/iview/iview.min.js}"></script>
+    <link rel="stylesheet" th:href="@{/css/base/iview/iview.css}" />
+    <!--<link rel="stylesheet" href="//unpkg.com/iview/dist/styles/iview.css">-->
+    <!--<script src="//vuejs.org/js/vue.min.js"></script>-->
+
+    <script type="text/javascript" th:inline="javascript">
+		/*<![CDATA[*/
+		ctxPath = /*[[@{/}]]*/ '';
+		/*]]>*/
+    </script>
+</head>
+<body>
+
+</body>
+</html>

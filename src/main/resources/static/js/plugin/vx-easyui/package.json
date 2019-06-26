@@ -1,0 +1,45 @@
+{
+  "_from": "vx-easyui",
+  "_id": "vx-easyui@1.1.12",
+  "_inBundle": false,
+  "_integrity": "sha512-Qrd3Gm2MrhSsH8TasNHR37LMld6o5raQG625f+HJ6dZH6/1pl7EX39nONeJvR/HwFZg5ktJWoWmoScKCDtl4cg==",
+  "_location": "/vx-easyui",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "vx-easyui",
+    "name": "vx-easyui",
+    "escapedName": "vx-easyui",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/vx-easyui/-/vx-easyui-1.1.12.tgz",
+  "_shasum": "63ee857fbcf24d93f9cc84cdfedba3bde02678eb",
+  "_spec": "vx-easyui",
+  "_where": "E:\\vue",
+  "author": {
+    "name": "jeasyui.com",
+    "email": "info@jeasyui.com"
+  },
+  "bundleDependencies": false,
+  "deprecated": false,
+  "description": "The EasyUI for Vue",
+  "homepage": "https://www.jeasyui.com/demo-vue/main/index.php",
+  "keywords": [
+    "vue",
+    "easyui"
+  ],
+  "license": "SEE LICENSE IN license_freeware.txt",
+  "main": "dist/vx-easyui-min.js",
+  "name": "vx-easyui",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "1.1.12"
+}

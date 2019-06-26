@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="utf-8"/>
+    <link th:include="base/base::header ('菜单管理')" />
+    <link rel="stylesheet" th:href="@{/css/sys/base/base.css}"/>
+</head>
+<body>
+<div class="container-fluid">
+    <div id="app">
+        <i-row :gutter="10">
+            <i-col span="16" :xs="16" :sm="16" :md="16" :lg="16" span="16">
+                用户名:<i-input v-model="param.username" placeholder="用户名" style="width:100px" @on-change="getUsers"/>
+                <i-button shape="circle" icon="ios-refresh" @click="getUsers"></i-button>
+                <i-button type="success" icon="ios-add" size="small" @click="user_add">新增用户</i-button>
+                <i-table highlight-row :columns="user_columns" :data="users" :loading="loading" :stripe="stripe" :height="containerhei"></i-table>
+            </i-col>
+            <i-col span="8" :xs="8" :sm="8" :md="8" :lg="8" span="8">
+                <i-button shape="circle" icon="ios-refresh" @click="getRoles"></i-button>
+                <i-button type="success" icon="ios-add" size="small" @click="role_add">新增角色</i-button>
+                <i-table highlight-row :columns="role_columns" :data="roles" :loading="loading" :stripe="stripe" :height="containerhei"></i-table>
+            </i-col>
+        </i-row>
+        <Modal title="用户信息" v-model="is_show_user" class-name="vertical-center-modal" @on-ok="user_submit" ok-text="提交"><!--垂直居中样式-->
+            <i-form :model="user_form" :label-width="80" :rules="user_rules">
+                <form-item label="登录名">
+                    <i-input v-model="user_form.loginname" placeholder="登录名" readonly></i-input>
+                </form-item>
+                <form-item label="用户名">
+                    <i-input v-model="user_form.username" placeholder="用户名" @on-blur="getPY_user"></i-input>
+                </form-item>
+                <form-item label="电话">
+                    <i-input v-model="user_form.tel" placeholder="联系电话"></i-input>
+                </form-item>
+                <form-item label="证件号">
+                    <i-input v-model="user_form.cardid" placeholder="身份证号"></i-input>
+                </form-item>
+                <form-item label="住址">
+                    <i-input v-model="user_form.address" placeholder="家庭住址"></i-input>
+                </form-item>
+                <form-item label="邮箱">
+                    <i-input v-model="user_form.email" placeholder="邮箱"></i-input>
+                </form-item>
+                <form-item label="备注">
+                    <i-input type="textarea" v-model="user_form.memo" placeholder="备注"></i-input>
+                </form-item>
+                <form-item label="角色名称">
+                    <i-select v-model="user_form.roles" multiple>
+                        <i-option v-for="item in roles" :value="item.id" :key="item.id">{{ item.role }}</i-option>
+                    </i-select>
+                </form-item>
+                <form-item label="激活状态">
+                    <i-switch v-model="user_form.isActive">
+                        <span slot="open">是</span>
+                        <span slot="close">否</span>
+                    </i-switch>
+                </form-item>
+            </i-form>
+        </Modal>
+        <Modal title="角色信息" v-model="is_show_role" class-name="vertical-center-modal" @on-ok="role_submit" ok-text="提交"><!--垂直居中样式-->
+            <i-form :model="role_form" :label-width="80" :rules="role_rules">
+                <form-item label="角色">
+                    <i-input v-model="role_form.rolename" placeholder="角色编码" readonly></i-input>
+                </form-item>
+                <form-item label="角色名称">
+                    <i-input v-model="role_form.role" placeholder="角色名称" @on-blur="getPY_role"></i-input>
+                </form-item>
+                <form-item label="备注">
+                    <i-input type="textarea" v-model="user_form.memo" placeholder="备注"></i-input>
+                </form-item>
+            </i-form>
+        </Modal>
+    </div>
+
+</div>
+
+<script th:src="@{/js/sys/user/index.js}"></script>
+<script th:src="@{/js/sys/common.js}"></script>
+</body>
+</html>
